@@ -3,19 +3,13 @@
 # so I ran the remaining lines manually. I also had to copy over a non-public
 # version of gfPcr.
 #
-# The resulting image works fully. It is saved as czbiohub-crispr_primer,
-# ami-01f985ad22673f1b1.
 #
 
-# TODO: can we use set -xe??
-
-sudo apt-get install unzip
 # TODO: Not sure why this magic is needed
+sudo apt-get install unzip
 sudo apt-get -f install --yes && sudo dpkg --configure -a
 
-# TODO: sadly, this isPcr is not working on AWS.... need to recompile or something.
-# isPcr
-# TODO: copy gfPcr bin from assets
+#Installing isPcr
 cd /mnt/data
 wget http://hgwdev.cse.ucsc.edu/~kent/exe/linux/isPcr.zip && mkdir isPcr && unzip isPcr.zip -d isPcr
 ln -s /mnt/data/isPcr ~/isPcr
@@ -32,8 +26,6 @@ conda create -n python2 anaconda python=2
 source activate python2
 conda install -c bioconda ucsc-twobittofa
 
-# TODO: why is packer quiting script around here?
-
 # fastinterval
 sudo apt-get install -y liblzo2-dev zlib1g-dev
 pip install fastinterval
@@ -48,14 +40,14 @@ wget http://hgdownload.cse.ucsc.edu/goldenPath/mm10/bigZips/mm10.2bit
 twoBitToFa mm10.2bit mm10.fa
 ln -s /mnt/data/genome ~/genome
 
-# SNP genomes... TOOD: should we update them to latest?
+# SNP genomes
 cd /mnt/data/genome
 mkdir hg38snp142
 cd hg38snp142
 curl --remote-name-all http://hgdownload.cse.ucsc.edu/goldenPath/hg38/snp142Mask/chr[1-22].subst.fa.gz
 curl --remote-name-all http://hgdownload.cse.ucsc.edu/goldenPath/hg38/snp142Mask/chr{X,Y}.subst.fa.gz
 gzip -d *.gz
-# TODO: is order important???
+
 cat *.subst.fa > ../hg38.snp142.fa
 
 cd /mnt/data/genome
@@ -64,7 +56,7 @@ cd mm10snp142
 curl --remote-name-all http://hgdownload.cse.ucsc.edu/goldenPath/mm10/snp142Mask/chr[1-19].subst.fa.gz
 curl --remote-name-all http://hgdownload.cse.ucsc.edu/goldenPath/mm10/snp142Mask/chr{X,Y}.subst.fa.gz
 gzip -d *.gz
-# TODO: is order important???
+
 cat *.subst.fa > ../mm10.snp142.fa
 
 # For login
