@@ -4,7 +4,7 @@ This is a python script that intakes a CSV format and outputs primers to amplify
 This script intakes a MS-DOS CSV and output designed primers, with sequencing adapters, to amplify said region.
 The primary application of this script has been to amplify DNA flanking a CRISPR-Cas9 site for DNA repair analysis. 
 
-In short, the python script is called with the syntax `./crispr_ -f inputfile_csv -g genome_contig -o outputfile_prefix -s search_range -n cut_index`
+In short, the python script is called with the syntax `./crispr_primer.py -f inputfile_csv -g genome_contig -o outputfile_prefix -s search_range -n cut_index`
 
 Primer3 setting can be changed in the `primer3_settings.cnf` file.
 
