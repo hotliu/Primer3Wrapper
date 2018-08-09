@@ -14,6 +14,6 @@ And returns a total of 3x files:
 3.) outputfile_prefix.bed.dropout - formatted csv file, in the same format as the entry file, containing all locations where primers were not found. 
 
 A more detailed explanation:
-crispr_primer takes as an input a formatted csv and uses Primer3 to find a number of forward and reverse primers that flank said sites. These output primers are dependent on total amplicon size (set in primer3_settings.cnf file), cutsite offset (found in crispr_primer.py script), as well as SNP regions (ispcr) and Tm calculations. As a final screen, all primers are subjected to a custom homodimer and heterodimer analysis - with adapters. This is important because Primer3 does not perform this function.  
+crispr_primer takes as an input a formatted csv and uses Primer3 to find a number of forward and reverse primers that flank said sites. These output primers are dependent on total amplicon size (set in primer3_settings.cnf file), cutsite offset (found in crispr_primer.py script), as well as low complexity regions (ispcr) and Tm calculations. All primers are also subjected to a custom homodimer and heterodimer analysis, considering the adapter sequences appended to the 5' end. This is important because Primer3 does not perform this function with the adapters.  
 
 Note that all dependent functions are not included in this repository and have to be installed seperately (see install.sh file) 
